@@ -1,15 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/c643158a06.js"
+      crossorigin="anonymous"
+    ></script>
     <title>BobRoss</title>
-</head>
-<body>
-    <canvas class = "paint"></canvas>
-    
+  </head>
+  <body>
+    <div class="thing">
+      <canvas class="paint"></canvas>
+    </div>
+
+    <div class="draw-box">
+      <div class="color-section">
+        <div class="color-pallete">
+          <span class="color active"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+        </div>
+
+        <div class="manager">
+          <button class="delete">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+          <button class="eraser">
+            <i class="fa-solid fa-eraser"></i>
+          </button>
+          <button class="fill">
+            <i class="fa-solid fa-fill-drip"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="size">
+        <div class="size-input">
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value="1"
+            step="1"
+            class="range"
+          />
+          <p class="value"></p>
+        </div>
+      </div>
+    </div>
+
     <script src="bobross.js"></script>
-</body>
+  </body>
 </html>
