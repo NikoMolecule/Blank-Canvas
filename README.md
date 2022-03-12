@@ -1,4 +1,4 @@
-# Bob-Ross-Canvas
+# Blank-Canvas ![](https://img.shields.io/badge/blank--canvas-v1.0.0--dev-green)
 
 Hello, this is my paint application, it's on 1.0.0v-dev version. I am still working on this project. 
 
