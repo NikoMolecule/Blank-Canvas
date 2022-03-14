@@ -1,6 +1,6 @@
-# Blank-Canvas ![](https://img.shields.io/badge/blank--canvas-v1.0.0--dev-green)
+# Blank-Canvas ![](https://img.shields.io/badge/blank--canvas-v1.0.0--stable-blue)
 
-Hello, this is my paint application, it's on 1.0.0v-dev version. I am still working on this project. 
+Hello, this is my paint application, it's on v1.0.0-stable version. 
 
 ## Project Description
 
@@ -21,9 +21,9 @@ You can just draw.
 - You can fill background with random colors
 - You can delete your drawing.
 - You can erase stuff
+- Cool Cursor
 
 ###### Future Updates:
 
-- More Styling
 - Local Storage
 - Custom Palette
