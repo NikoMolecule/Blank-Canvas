@@ -4,6 +4,8 @@ const deleteAll = document.querySelector(".delete");
 const fillAll = document.querySelector(".fill");
 const eraser = document.querySelector(".eraser");
 const colorPallete = document.querySelector(".color-pallete");
+const cursor = document.querySelector(".cursor");
+const drawingCenter = document.querySelector(".draw-box");
 let childrenchild = colorPallete.children;
 
 const palette = [
@@ -17,9 +19,12 @@ const palette = [
   "purple",
   "orange",
   "crimson",
+  "darkorchid",
+  "pink",
+  "lightgreen",
+  "papayawhip",
 ];
 
-console.log(colorPallete.children);
 // adding colors to the color-pallete div
 
 const pickColor = (event) => {
@@ -32,6 +37,12 @@ const addColorsAndEvents = () => {
   for (let j = 0; j < children.length; j++) {
     children[j].style.background = palette[j];
     children[j].addEventListener("click", pickColor);
+    children[j].addEventListener("click", () => {
+      Object.values(children).forEach((child) =>
+        child.classList.remove("active")
+      );
+      children[j].classList.add("active");
+    });
   }
 };
 
@@ -78,6 +89,8 @@ canvas.addEventListener("mousemove", creatingCanvas);
 rangeInput.addEventListener("input", () => {
   valueInp.textContent = rangeInput.value;
   context.lineWidth = rangeInput.value;
+  cursor.style.width = `${rangeInput.value}px `;
+  cursor.style.height = `${rangeInput.value}px`;
 });
 valueInp.textContent = rangeInput.value;
 
@@ -102,3 +115,29 @@ const eraseDrawing = () => {
 };
 
 eraser.addEventListener("click", eraseDrawing);
+
+// tracking cursor
+
+//div customization too
+
+cursor.style.top = 0;
+cursor.style.left = 0;
+
+const trackingCursor = (e) => {
+  const x = e.clientX - rangeInput.value / 2;
+  const y = e.clientY - rangeInput.value / 2;
+
+  cursor.style.transform = `translate(${x}px, ${y}px)`;
+};
+
+window.addEventListener("mousemove", trackingCursor);
+// cursor display
+const isCursor = () => {
+  cursor.style.display = "initial";
+};
+
+const isNotCursor = () => {
+  cursor.style.display = "none";
+};
+drawingCenter.addEventListener("mousemove", isNotCursor);
+canvas.addEventListener("mousemove", isCursor);
