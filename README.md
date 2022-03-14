@@ -1,6 +1,6 @@
 # Blank-Canvas ![](https://img.shields.io/badge/blank--canvas-v1.0.0--stable-blue)
 
-Hello, this is my paint application, it's on v1.0.0-stable version. 
+Hello, this is my paint application, You can draw, create and build in my application. 
 
 ## Project Description
 
