@@ -16,7 +16,7 @@ You can just draw.
 
 ###### Features:
 
-- You can draw with 10 different colors
+- You can draw with 14 different colors
 - You can choose thickness of your pen
 - You can fill background with random colors
 - You can delete your drawing.
