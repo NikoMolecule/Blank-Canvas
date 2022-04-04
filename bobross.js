@@ -6,7 +6,24 @@ const eraser = document.querySelector(".eraser");
 const colorPallete = document.querySelector(".color-pallete");
 const cursor = document.querySelector(".cursor");
 const drawingCenter = document.querySelector(".draw-box");
+const saveModalBtn = document.querySelector(".save-project");
+const loadModalBtn = document.querySelector(".load-projects");
+const saveModal = document.querySelector(".modal");
+const loadModal = document.querySelector(".new-modal");
+const cancelBtn = document.querySelectorAll(".del-button");
+const saveBtn = document.querySelector(".save");
+const saveInput = document.querySelector(".save-input");
+const projectDisplay = document.querySelector(".project-display");
+const loadProject = document.querySelector(".load-btn");
 let childrenchild = colorPallete.children;
+
+window.addEventListener("load", () => {
+  if (localStorage.getItem("projects") === null) {
+    localStorage.setItem("projects", JSON.stringify([]));
+  } else {
+    return;
+  }
+});
 
 const palette = [
   "black",
@@ -141,3 +158,96 @@ const isNotCursor = () => {
 };
 drawingCenter.addEventListener("mousemove", isNotCursor);
 canvas.addEventListener("mousemove", isCursor);
+
+saveModalBtn.addEventListener(
+  "click",
+  () => (saveModal.style.display = "block")
+);
+
+cancelBtn[0].addEventListener(
+  "click",
+  () => (saveModal.style.display = "none")
+);
+
+cancelBtn[1].addEventListener(
+  "click",
+  () => (loadModal.style.display = "none")
+);
+
+const saveCanvas = () => {
+  const oldData = JSON.parse(localStorage.getItem("projects"));
+  const example = { name: "", elementID: "", canvasID: "" };
+  if (saveInput.value.length === 0) {
+    alert("TYPE SOMETHING U IDIOT!");
+  } else {
+    example.name = saveInput.value;
+    example.elementID = new Date().getTime().toString();
+    example.canvasID = canvas.toDataURL();
+
+    const newData = [...oldData, example];
+    localStorage.setItem("projects", JSON.stringify(newData));
+    saveInput.value = "";
+    saveModal.style.display = "none";
+    alert("Your Drawing is Saved, Good Job!");
+  }
+};
+saveBtn.addEventListener("click", saveCanvas);
+
+loadModalBtn.addEventListener("click", () => {
+  projectDisplay.innerHTML = "";
+  loadModal.style.display = "flex";
+  let projectData = JSON.parse(localStorage.getItem("projects"));
+  if (projectData.length !== 0) {
+    for (let i = 0; i < projectData.length; i++) {
+      const eachProject = document.createElement("div");
+      eachProject.className = "project";
+      const title = document.createElement("div");
+      const del_btn = document.createElement("button");
+      title.className = "header";
+      title.innerHTML = projectData[i].name;
+      eachProject.id = projectData[i].elementID;
+      del_btn.innerHTML = "delete";
+      del_btn.className = "del-btn";
+      eachProject.appendChild(del_btn);
+      eachProject.appendChild(title);
+      projectDisplay.appendChild(eachProject);
+
+      eachProject.addEventListener("click", () => {
+        for (let k = 0; k < projectData.length; k++) {
+          projectDisplay.children[k].classList = "project";
+        }
+        eachProject.className = "project choosen";
+      });
+      del_btn.addEventListener("click", () => {
+        let projectData = JSON.parse(localStorage.getItem("projects"));
+        let choosenProject = del_btn.parentElement;
+        let choosenProjectData = projectData.filter(
+          (e) => e.elementID !== choosenProject.id
+        );
+        localStorage.setItem("projects", JSON.stringify(choosenProjectData));
+
+        del_btn.parentElement.remove();
+      });
+    }
+  }
+});
+
+const loadFunc = () => {
+  let arr = Array.from(projectDisplay.children);
+  let choosenProject = arr.find((a) => a.classList == "project choosen");
+  let projectData = JSON.parse(localStorage.getItem("projects"));
+  let choosenProjectData = projectData.find(
+    (e) => e.elementID === choosenProject.id
+  );
+  let dataURL = choosenProjectData.canvasID;
+  let img = new Image();
+  img.src = dataURL;
+  img.onload = function () {
+    context.drawImage(img, 0, 0);
+    alert("Succsefully Loaded");
+    loadModal.style.display = "none";
+  };
+};
+loadProject.addEventListener("click", loadFunc);
+
+const delFunc = () => {};

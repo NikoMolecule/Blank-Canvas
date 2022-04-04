@@ -12,6 +12,13 @@
     <title>BobRoss</title>
   </head>
   <body>
+    <div class="navbar-container">
+      <div class="navbar">
+        <button class="save-project">Save your project</button>
+        <button class="load-projects">Your Projects</button>
+      </div>
+    </div>
+    <!--drawing panel-->
     <div class="thing">
       <canvas class="paint"></canvas>
     </div>
@@ -71,7 +78,27 @@
       </div>
     </div>
 
+    <!--modal-->
+    <div class="modal">
+        <div id="result" class="modal-content">
+          <h1>Type name of your drawing</h1>
+          <input type="text" class = "save-input">
+            <button class="del-button">Cancel</button>
+            <button class="save">Save</button>
+        </div>
+    </div>
+
+    <div class="new-modal">
+      <div class="load-content">
+        <div class = "load-header">Your Projects</div>
+        <div class="project-display"></div>
+        <div class="load-buttons">
+          <button class = "del-button">Cancel</button>
+          <button class="load-btn">Load</button>
+        </div>
+      </div>
+    </div>
     <div class="cursor"></div>
-    <script src="bobross.js"></script>
+    <script type = "module" src="bobross.js"></script>
   </body>
 </html>

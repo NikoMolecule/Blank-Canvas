@@ -66,7 +66,8 @@ span {
   display: initial;
 }
 
-.active {
+.active,
+.choosen {
   border: 3px solid rgb(10, 179, 52);
 }
 
@@ -130,7 +131,7 @@ span {
   grid-template-columns: 120px 1fr;
 }
 
-input {
+.range {
   width: 530px;
   height: 2px;
   background-color: #0075ff;
@@ -145,4 +146,190 @@ input {
   font-weight: 500;
   text-align: center;
   line-height: 40px;
+}
+
+.navbar {
+  cursor: default;
+}
+
+.navbar-container {
+  background-color: rgba(36, 35, 35, 1);
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  cursor: default;
+}
+
+.navbar-container:hover {
+  cursor: default;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+  cursor: default;
+}
+
+.modal-content {
+  background: rgb(65, 63, 63);
+  text-align: center;
+  margin: 10% auto;
+  width: 360px;
+  border-radius: 10px;
+  padding: 3rem;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalpopup;
+  animation-duration: 0.6s;
+  color: rgb(224, 224, 224);
+  cursor: default;
+}
+
+.new-modal {
+  cursor: default;
+}
+
+.save-input {
+  width: 250px;
+  height: 20px;
+}
+@keyframes modalpopup {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+h1 {
+  font-size: 15px;
+}
+
+.save,
+.load-btn {
+  outline: none;
+  border-radius: 15px;
+  color: white;
+  background-color: rgb(22, 180, 22);
+  border: none;
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.load-btn {
+  margin-left: 20px;
+}
+
+.del-button {
+  outline: none;
+  border-radius: 15px;
+  color: white;
+  background-color: rgb(194, 13, 67);
+  border: none;
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.new-modal {
+  display: none;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  top: 0;
+  left: 0;
+  animation: modalpopup;
+  animation-duration: 0.6s;
+}
+
+.load-content {
+  position: relative;
+  background: rgba(36, 35, 35, 1);
+  width: 500px;
+  height: 500px;
+  border-radius: 20px;
+}
+
+.load-header {
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+.project-display {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.load-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(75, 72, 72, 0.68);
+  border-radius: 10px;
+}
+
+.project {
+  position: relative;
+  width: 100%;
+  border-radius: 15px;
+  background: #6d6d6e;
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 20px 10px;
+  text-align: center;
+  transition: ease 0.3s;
+}
+
+.del-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: crimson;
+  border-radius: 10px;
+  z-index: 10;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.del-btn:hover {
+  background-color: #ec3f0b;
 }
