@@ -22,8 +22,14 @@ You can just draw.
 - You can delete your drawing.
 - You can erase stuff
 - Cool Cursor
+- Local Storage
 
 ###### Future Updates:
-
-- Local Storage
 - Custom Palette
+
+###### v2.0.0 - Storage Update
+From now on, you will never lose your drawing and you will be able to save it in local storage.
+
+- You can save projects
+- You can see saved projects
+- You can load your projects
