@@ -27,7 +27,7 @@ You can just draw.
 ###### Future Updates:
 - Custom Palette
 
-###### v2.0.0 - Storage Update
+## v2.0.0 - Storage Update
 From now on, you will never lose your drawing and you will be able to save it in local storage.
 
 - You can save projects
