@@ -24,23 +24,9 @@ window.addEventListener("load", () => {
     return;
   }
 });
+import color from "./color.json" assert { type: "json" };
 
-const palette = [
-  "black",
-  "yellow",
-  "blue",
-  "red",
-  "green",
-  "brown",
-  "teal",
-  "purple",
-  "orange",
-  "crimson",
-  "darkorchid",
-  "pink",
-  "lightgreen",
-  "papayawhip",
-];
+const palette = color.palette;
 
 // adding colors to the color-pallete div
 

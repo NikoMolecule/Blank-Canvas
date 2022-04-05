@@ -161,6 +161,7 @@ span {
   height: 40px;
   align-items: center;
   cursor: default;
+  z-index: 2;
 }
 
 .navbar-container:hover {
@@ -332,4 +333,17 @@ h1 {
 
 .del-btn:hover {
   background-color: #ec3f0b;
+}
+
+.save-project,
+.load-projects {
+  width: 200px;
+  height: 30px;
+  font-size: 15px;
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  background-color: rgba(24, 128, 105, 0.8);
+  color: white;
+  cursor: pointer;
 }
