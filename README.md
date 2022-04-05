@@ -1,4 +1,4 @@
-# Blank-Canvas ![](https://img.shields.io/badge/blank--canvas-v2.0.0--dev-green)
+# Blank-Canvas ![](https://img.shields.io/badge/blank--canvas-v2.0.0--stable-blue)
 
 Hello, this is my paint application, You can draw, create and build in my application. 
 
