@@ -1,0 +1,364 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  overflow: hidden;
+}
+.thing {
+  width: 100%;
+  height: 88vh;
+  overflow: hidden;
+  cursor: none;
+}
+
+.draw-box {
+  background-color: rgba(36, 35, 35, 1);
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 100px;
+  align-items: center;
+}
+
+.draw-box:hover {
+  cursor: default;
+}
+
+span {
+  height: 30px;
+  width: 30px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  transition: ease 0.3s;
+}
+
+.color-section {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  align-items: center;
+  border-right: 2px solid white;
+}
+.value {
+  color: white;
+}
+
+.color-pallete {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.cursor {
+  position: absolute;
+  color: white;
+  border: 2px solid black;
+  border-radius: 50%;
+  pointer-events: none;
+  display: initial;
+}
+
+.active,
+.choosen {
+  border: 3px solid rgb(10, 179, 52);
+}
+
+.delete,
+.eraser,
+.fill,
+.redo-btn,
+.undo-btn {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  background-color: rgba(75, 72, 72, 0.8);
+  color: white;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.redo-btn,
+.undo-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 10px;
+  background-color: rgba(123, 121, 121, 0.8);
+}
+.manager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.github {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  background-color: rgba(75, 72, 72, 0.8);
+  color: white;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.github a {
+  color: white;
+}
+.size {
+  display: grid;
+  place-items: center;
+}
+
+.size-input {
+  position: relative;
+  justify-content: center;
+  background-color: rgb(243, 235, 235);
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.size-contant-container {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 120px 1fr;
+}
+
+.range {
+  width: 530px;
+  height: 2px;
+  background-color: #0075ff;
+  border: none;
+  outline: none;
+}
+
+.value {
+  color: #0075ff;
+  height: 40px;
+  margin-left: 10px;
+  font-weight: 500;
+  text-align: center;
+  line-height: 40px;
+}
+
+.navbar {
+  cursor: default;
+}
+
+.navbar-container {
+  background-color: rgba(36, 35, 35, 1);
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  cursor: default;
+  z-index: 2;
+}
+
+.navbar-container:hover {
+  cursor: default;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+  cursor: default;
+}
+
+.modal-content {
+  background: rgb(65, 63, 63);
+  text-align: center;
+  margin: 10% auto;
+  width: 360px;
+  border-radius: 10px;
+  padding: 3rem;
+  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  animation-name: modalpopup;
+  animation-duration: 0.6s;
+  color: rgb(224, 224, 224);
+  cursor: default;
+}
+
+.new-modal {
+  cursor: default;
+}
+
+.save-input {
+  width: 250px;
+  height: 20px;
+}
+@keyframes modalpopup {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+h1 {
+  font-size: 15px;
+}
+
+.save,
+.load-btn {
+  outline: none;
+  border-radius: 15px;
+  color: white;
+  background-color: rgb(22, 180, 22);
+  border: none;
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.load-btn {
+  margin-left: 20px;
+}
+
+.del-button {
+  outline: none;
+  border-radius: 15px;
+  color: white;
+  background-color: rgb(194, 13, 67);
+  border: none;
+  width: 80px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.new-modal {
+  display: none;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  top: 0;
+  left: 0;
+  animation: modalpopup;
+  animation-duration: 0.6s;
+}
+
+.load-content {
+  position: relative;
+  background: rgba(36, 35, 35, 1);
+  width: 500px;
+  height: 500px;
+  border-radius: 20px;
+}
+
+.load-header {
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
+
+.project-display {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.load-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(75, 72, 72, 0.68);
+  border-radius: 10px;
+}
+
+.project {
+  position: relative;
+  width: 100%;
+  border-radius: 15px;
+  background: #6d6d6e;
+  cursor: pointer;
+  margin: 10px 0;
+  padding: 20px 10px;
+  text-align: center;
+  transition: ease 0.3s;
+}
+
+.del-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: crimson;
+  border-radius: 10px;
+  z-index: 10;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.del-btn:hover {
+  background-color: #ec3f0b;
+}
+
+.save-project,
+.load-projects {
+  width: 200px;
+  height: 30px;
+  font-size: 15px;
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  background-color: rgba(24, 128, 105, 0.8);
+  color: white;
+  cursor: pointer;
+}
+
+.change-container {
+  margin-right: 5px;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/c643158a06.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>BobRoss</title>
+  </head>
+  <body>
+    <div class="navbar-container">
+      <div class="navbar">
+        <button class="save-project">Save your project</button>
+        <button class="load-projects">Your Projects</button>
+      </div>
+      <div class="change-container">
+        <button class="undo-btn">undo</button>
+        <button class="redo-btn">redo</button>
+      </div>
+    </div>
+    <!--drawing panel-->
+    <div class="thing">
+      <canvas class="paint"></canvas>
+    </div>
+
+    <div class="draw-box">
+      <div class="color-section">
+        <div class="color-pallete">
+          <span class="color active"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+          <span class="color"></span>
+        </div>
+
+        <div class="manager">
+          <button class="delete">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+          <button class="eraser">
+            <i class="fa-solid fa-eraser"></i>
+          </button>
+          <button class="fill">
+            <i class="fa-solid fa-fill-drip"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="size-contant-container">
+        <div class ="github">
+            <a href="https://github.com/NikoMolecule"
+              ><i class="fa-brands fa-github"></i
+            ></a>
+          </div>
+          <div class="size">
+            <div class="size-input">
+              <input
+                type="range"
+                min="1"
+                max="100"
+                value="1"
+                step="1"
+                class="range"
+              />
+              <p class="value"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--modal-->
+    <div class="modal">
+        <div id="result" class="modal-content">
+          <h1>Type name of your drawing</h1>
+          <input type="text" class = "save-input">
+            <button class="del-button">Cancel</button>
+            <button class="save">Save</button>
+        </div>
+    </div>
+
+    <div class="new-modal">
+      <div class="load-content">
+        <div class = "load-header">Your Projects</div>
+        <div class="project-display"></div>
+        <div class="load-buttons">
+          <button class = "del-button">Cancel</button>
+          <button class="load-btn">Load</button>
+        </div>
+      </div>
+    </div>
+    <div class="cursor"></div>
+    <script type = "module" src="bobross.js"></script>
+  </body>
+</html>
