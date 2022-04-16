@@ -15,8 +15,9 @@ const saveBtn = document.querySelector(".save");
 const saveInput = document.querySelector(".save-input");
 const projectDisplay = document.querySelector(".project-display");
 const loadProject = document.querySelector(".load-btn");
+const undoBtn = document.querySelector(".undo-btn");
+const redoBtn = document.querySelector(".redo-btn");
 let childrenchild = colorPallete.children;
-
 window.addEventListener("load", () => {
   if (localStorage.getItem("projects") === null) {
     localStorage.setItem("projects", JSON.stringify([]));
@@ -24,6 +25,7 @@ window.addEventListener("load", () => {
     return;
   }
 });
+
 import color from "./color.json" assert { type: "json" };
 
 const palette = color.palette;
@@ -50,6 +52,13 @@ const addColorsAndEvents = () => {
 };
 
 addColorsAndEvents();
+let undoArr = [];
+let redoArr = [];
+const saveProgress = () => {
+  let saveType = "";
+  saveType = canvas.toDataURL();
+  undoArr.push(saveType);
+};
 
 // canvas
 
@@ -222,13 +231,18 @@ const loadFunc = () => {
   let arr = Array.from(projectDisplay.children);
   let choosenProject = arr.find((a) => a.classList == "project choosen");
   let projectData = JSON.parse(localStorage.getItem("projects"));
+  let undoData = JSON.parse(localStorage.getItem("undo"));
+  undoData.splice(0, undoData.length);
+  localStorage.setItem("undo", JSON.stringify(undoData));
   let choosenProjectData = projectData.find(
     (e) => e.elementID === choosenProject.id
   );
-  let dataURL = choosenProjectData.canvasID;
-  let img = new Image();
+  const dataURL = choosenProjectData.canvasID;
+  const img = new Image();
   img.src = dataURL;
   img.onload = function () {
+    context.fillStyle = "white";
+    context.clearRect(0, 0, canvas.width, canvas.height);
     context.drawImage(img, 0, 0);
     alert("Succsefully Loaded");
     loadModal.style.display = "none";
@@ -236,4 +250,44 @@ const loadFunc = () => {
 };
 loadProject.addEventListener("click", loadFunc);
 
-const delFunc = () => {};
+const undoFunc = () => {
+  if (undoArr.length === 0) {
+    context.fillStyle = "white";
+    return context.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  const dataURL = undoArr[undoArr.length - 1];
+  redoArr.push(dataURL);
+  undoArr.pop();
+  const img = new Image();
+  img.src = dataURL;
+  img.onload = function () {
+    context.fillStyle = "white";
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(img, 0, 0);
+  };
+};
+
+const redoFunc = () => {
+  if (redoArr.length === 0) {
+    context.fillStyle = "white";
+    return context.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  const dataURL = redoArr[redoArr.length - 1];
+  undoArr.push(dataURL);
+  redoArr.pop();
+  const img = new Image();
+  img.src = dataURL;
+  context.fillStyle = "white";
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  img.onload = function () {
+    context.drawImage(img, 0, 0);
+  };
+};
+
+undoBtn.addEventListener("click", () => console.log(undoArr));
+redoBtn.addEventListener("click", () => redoFunc());
+
+canvas.addEventListener("mousedown", saveProgress);
+canvas.addEventListener("mouseup", () => console.log(undoArr));
