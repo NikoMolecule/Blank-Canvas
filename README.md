@@ -34,5 +34,11 @@ From now on, you will never lose your drawing and you will be able to save it in
 - You can see saved projects
 - You can load your projects
 
+## v2.0.0 - "Don't worry about mistakes" Update
+From now on, you can be calm, whenever you made a mistake.
+
+- You can undo
+- You can redo
+
 ## Support Table
 ![image](https://user-images.githubusercontent.com/98226184/161537171-a8b21441-80d2-4737-a21a-60007cac4560.png)
