@@ -28,6 +28,8 @@ window.addEventListener("load", () => {
 
 import color from "./color.json" assert { type: "json" };
 
+let cStep = -1;
+
 const palette = color.palette;
 
 // adding colors to the color-pallete div
@@ -53,12 +55,6 @@ const addColorsAndEvents = () => {
 
 addColorsAndEvents();
 let undoArr = [];
-let redoArr = [];
-const saveProgress = () => {
-  let saveType = "";
-  saveType = canvas.toDataURL();
-  undoArr.push(saveType);
-};
 
 // canvas
 
@@ -75,9 +71,18 @@ let drawActive = (event) => {
   creatingCanvas(event);
 };
 
+const saveProgress = () => {
+  cStep++;
+  if (cStep < undoArr.length) {
+    undoArr.length = cStep;
+  }
+  undoArr.push(canvas.toDataURL());
+};
+
 let drawInactive = () => {
   drawing = false;
   context.beginPath();
+  saveProgress();
 };
 
 let creatingCanvas = (event, width, color) => {
@@ -134,7 +139,6 @@ eraser.addEventListener("click", eraseDrawing);
 
 cursor.style.top = 0;
 cursor.style.left = 0;
-
 const trackingCursor = (e) => {
   const x = e.clientX - rangeInput.value / 2;
   const y = e.clientY - rangeInput.value / 2;
@@ -251,43 +255,30 @@ const loadFunc = () => {
 loadProject.addEventListener("click", loadFunc);
 
 const undoFunc = () => {
-  if (undoArr.length === 0) {
-    context.fillStyle = "white";
-    return context.clearRect(0, 0, canvas.width, canvas.height);
-  }
+  if (cStep >= 0) {
+    cStep--;
 
-  const dataURL = undoArr[undoArr.length - 1];
-  redoArr.push(dataURL);
-  undoArr.pop();
-  const img = new Image();
-  img.src = dataURL;
-  img.onload = function () {
-    context.fillStyle = "white";
+    // V Clear the canvas
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(img, 0, 0);
-  };
-};
+    // ^ Clear the canvas
 
-const redoFunc = () => {
-  if (redoArr.length === 0) {
-    context.fillStyle = "white";
-    return context.clearRect(0, 0, canvas.width, canvas.height);
+    var img = new Image();
+    img.src = undoArr[cStep];
+    img.onload = function () {
+      context.drawImage(img, 0, 0);
+    };
   }
-
-  const dataURL = redoArr[redoArr.length - 1];
-  undoArr.push(dataURL);
-  redoArr.pop();
-  const img = new Image();
-  img.src = dataURL;
-  context.fillStyle = "white";
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  img.onload = function () {
-    context.drawImage(img, 0, 0);
-  };
+};
+const redoFunc = () => {
+  if (cStep < undoArr.length - 1) {
+    cStep++;
+    const img = new Image();
+    img.src = undoArr[cStep];
+    img.onload = () => {
+      context.drawImage(img, 0, 0);
+    };
+  }
 };
 
-undoBtn.addEventListener("click", () => console.log(undoArr));
-redoBtn.addEventListener("click", () => redoFunc());
-
-canvas.addEventListener("mousedown", saveProgress);
-canvas.addEventListener("mouseup", () => console.log(undoArr));
+undoBtn.addEventListener("click", undoFunc);
+redoBtn.addEventListener("click", redoFunc);
