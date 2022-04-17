@@ -1,4 +1,4 @@
-# Blank-Canvas ![](https://img.shields.io/badge/blank--canvas-v2.0.0--stable-blue)
+# Blank-Canvas ![](https://img.shields.io/badge/blank--canvas-v3.0.0--stable-blue)
 
 Hello, this is my paint application, You can draw, create and build in my application. 
 
@@ -34,7 +34,7 @@ From now on, you will never lose your drawing and you will be able to save it in
 - You can see saved projects
 - You can load your projects
 
-## v2.0.0 - "Don't worry about mistakes" Update
+## v3.0.0 - "Don't worry about mistakes" Update
 From now on, you can be calm, whenever you made a mistake.
 
 - You can undo
