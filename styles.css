@@ -348,7 +348,8 @@ h1 {
 }
 
 .save-project,
-.load-projects {
+.load-projects,
+.save-current-project {
   width: 200px;
   height: 30px;
   font-size: 15px;
