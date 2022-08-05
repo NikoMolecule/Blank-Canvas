@@ -8,6 +8,7 @@ const cursor = document.querySelector(".cursor");
 const drawingCenter = document.querySelector(".draw-box");
 const saveModalBtn = document.querySelector(".save-project");
 const loadModalBtn = document.querySelector(".load-projects");
+const downloadProjectBtn = document.querySelector(".save-current-project");
 const saveModal = document.querySelector(".modal");
 const loadModal = document.querySelector(".new-modal");
 const cancelBtn = document.querySelectorAll(".del-button");
@@ -163,6 +164,11 @@ saveModalBtn.addEventListener(
   () => (saveModal.style.display = "block")
 );
 
+downloadProjectBtn.addEventListener("click", downloadCurrentProject)
+
+downloadCurrentProject
+
+
 cancelBtn[0].addEventListener(
   "click",
   () => (saveModal.style.display = "none")
@@ -279,6 +285,33 @@ const redoFunc = () => {
     };
   }
 };
+
+
+
+function downloadCurrentProject() {
+  /// create an "off-screen" anchor tag
+  var lnk = document.createElement('a'), e;
+
+  /// the key here is to set the download attribute of the a tag
+  lnk.download = "drawing.png";
+
+  /// convert canvas content to data-uri for link. When download
+  /// attribute is set the content pointed to by link will be
+  /// pushed as "download" in HTML5 capable browsers
+  lnk.href = canvas.toDataURL("image/png;base64");
+
+  /// create a "fake" click-event to trigger the download
+  if (document.createEvent) {
+    e = document.createEvent("MouseEvents");
+    e.initMouseEvent("click", true, true, window,
+                     0, 0, 0, 0, 0, false, false, false,
+                     false, 0, null);
+
+    lnk.dispatchEvent(e);
+  } else if (lnk.fireEvent) {
+    lnk.fireEvent("onclick");
+  }
+}
 
 undoBtn.addEventListener("click", undoFunc);
 redoBtn.addEventListener("click", redoFunc);
